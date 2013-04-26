@@ -1,0 +1,20 @@
+{   
+  "name": "iskvs",
+  "version": "0.0.1",
+  "description": "Simple key-value store based on Node.js. Initially designed for storing cache for multithread apps",
+  "keywords": ["key-value store", "caching"],
+  "author": "Ivan Vetrau <i.vetrov@gmail.com> (http://www.invatechs.com/)",
+  "repository": {
+    "type" :  "git",
+    "url": "http://github.com/i-vetrov/iskvs.git"
+  },
+  "bugs": {
+    "mail": "i.vetrov@gmail.com",
+    "url": "http://github.com/i-vetrov/iskvs/issues"
+  },
+  "license": "MIT",
+  "main": "./iskvs.js",
+  "engines": { 
+    "node": ">=0.6.0" 
+  }
+}
