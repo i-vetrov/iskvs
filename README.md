@@ -42,7 +42,7 @@ Full list of client methods:
 
       callback = function (err, data) {...} 
 
-For multicore app ussage create server and set up port in master thereat and client in worker:
+For multicore app usage create server and set up port in master thread and client in worker:
       
       var cluster = require('cluster');
       var numCPUs = require('os').cpus().length;
