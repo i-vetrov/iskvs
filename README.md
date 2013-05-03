@@ -42,11 +42,21 @@ Full list of client methods:
 
       callback = function (err, data) {...} 
 
-For multicore app usage create server and set up port in master thread and client in worker:
+Other creating Client parameters:
+      
+     var client = iskvs.Client(options, reconnect, onconnect);
+
+`options`: connection options, like `port`, `host` or `path`, required;
+
+`reconnect`: reconnection options `{reconnect: true, timeout:5000, attempts: 10}`, optional;
+         
+`onconnect`: function, called when connection is established, optional.
+
+For multicore app ussage create server and set up port in master thereat and client in worker:
       
       var cluster = require('cluster');
       var numCPUs = require('os').cpus().length;
-      var iskvs = require('./iskvs');
+      var iskvs = require('iskvs');
       
       if(cluster.isMaster) {
           var server = iskvs.Server();
@@ -74,7 +84,33 @@ For multicore app usage create server and set up port in master thread and clien
           }).listen(80);  
       }
       
+## iskvs server
       
+      var iskvs = require('iskvs');
+      var server = iskvs.Server().listen(8080);
+
+Server receives JSON formatter commands which should be finished with delimiter `\n`:
+
+      {"id":"UNIQ_ID_HERE", "command":"set", "key":"index", "value":"some index content"}\n
+
+      {"id":"UNIQ_ID_HERE", "command":"get", "key":"index"}\n
+
+      {"id":"UNIQ_ID_HERE", "command":"del", "key":"index"}\n
+
+      {"id":"UNIQ_ID_HERE", "command":"clr"}\n
+
+and responds with JSON string, for example:
+
+      {"id":"SAME_UNIQ_ID_HERE", "data":{"key":"index", "value":"some index content"}, "success":"success"}\n
+
+      {"id":"SAME_UNIQ_ID_HERE", "success":"success"}\n
+
+      {"id":"SAME_UNIQ_ID_HERE", "error":"notstored"}\n
+
+      {"id":"SAME_UNIQ_ID_HERE", "error":"badrequest"}\n
+
+      {"error":"notjsonrequest"}\n
+
 ## Licence
 
 The MIT License

@@ -1,5 +1,5 @@
 /**
- * @license iskvs v0.0.1
+ * @license iskvs v0.0.2
  * https://github.com/i-vetrov/iskvs
  *
  * Author: Ivan Vetrau (http://www.invatechs.com/)
@@ -17,6 +17,6 @@ module.exports.Server = function(){
   return server;
 }
 
-module.exports.Client = function(options){
-  return client.Client(options);
+module.exports.Client = function(options, reconnect, onconnect){
+  return client.Client(options, reconnect, onconnect);
 }
