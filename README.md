@@ -26,7 +26,7 @@ iskvs was designed to implement key-value cache storage for InvaNode CMS. It has
 
       client.get('index', function(err, data){
           if(!err) {
-              console.log("indes data: " + data);
+              console.log("index data: " + data);
           }
       });
 
